@@ -21,6 +21,7 @@ public class Player {
         this.shoots = shoots;
         texture = new PImage[4];
         texture = new PImage[]{processing.loadImage("ulis.png"), processing.loadImage("ulis_right.png"), processing.loadImage("ulis_down.png"), processing.loadImage("ulis_left.png")};
+        spawn();
     }
 
     public int getX(){
@@ -34,7 +35,6 @@ public class Player {
         positionX = 10;
         positionY = 10;
         sens = 1;
-        set();
     }
 
     void shoot(){

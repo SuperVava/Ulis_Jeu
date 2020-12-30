@@ -22,11 +22,11 @@ public class Ennemy {
 
     private void spawn(int point) {
         if(point == 1){
-            positionX = 0;
+            positionX = 10;
             positionY = 70;
         }
         if(point == 2){
-            positionX = 256;
+            positionX = 250;
             positionY = 114;
         }
 
@@ -37,12 +37,12 @@ public class Ennemy {
             screen.set(texture, positionX, positionY, ElementType.ENNEMY);
         }
         catch (Colision colision){
-            if(colision.getType() == 1) {
+            if(colision.getType() == ElementType.WALL) {
                 positionX = lastPositionX;
                 positionY = lastPositionY;
                 set();
             }
-            if(colision.getType() == 2){
+            if(colision.getType() == ElementType.BULLET){
                 spawn((int)processing.random(1, 3));
             }
         }
@@ -51,6 +51,8 @@ public class Ennemy {
     void move() {
         lastPositionX = positionX;
         lastPositionY = positionY;
+
+        screen.erase(texture, lastPositionX, lastPositionY);
 
         if (positionX > ulis.getX()) {
             positionX -= 1;

@@ -23,9 +23,9 @@ public class UlisJeu extends PApplet {
         this.screen = new Screen(this);
         this.backGround = new BackGround(this, screen);
         this.itemList = new ItemList(this, screen, backGround);
-        this.tom = new Ennemy(this, ulis, screen);
         this.shootList = new ShootList(this, screen, itemList);
         this.ulis = new Player(this, shootList, screen);
+        this.tom = new Ennemy(this, ulis, screen);
         this.control = new Control(ulis);
 
         time = 0;
@@ -35,14 +35,13 @@ public class UlisJeu extends PApplet {
     @Override
     public void draw() {
         if (!gameStarted) {
-
         }
 
         if (gameStarted) {
             screen.draw();
 
             if (millis() > time + 500) {
-                //tom.move();
+                tom.move();
                 time += 500;
             }
             shootList.update();
@@ -65,7 +64,6 @@ public class UlisJeu extends PApplet {
     @Override
     public void keyTyped() {
         if (key == 'p') gameStart();
-
         control.treat(key);
     }
 }
