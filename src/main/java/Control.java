@@ -28,6 +28,7 @@ public class Control{
         }
         if(key == ' '){
             ulis.shoot();
+            stop();
         }
     }
 }

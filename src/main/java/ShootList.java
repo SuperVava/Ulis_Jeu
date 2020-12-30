@@ -10,6 +10,7 @@ public class ShootList {
     public int lastPositions[][];
     int numberOfShoots;
     int maximum;
+    int clock;
     PImage texture;
 
     public ShootList(PApplet processing, Screen screen, ItemList itemList) {
@@ -24,27 +25,32 @@ public class ShootList {
     }
 
     void newShoot(int ulisX, int ulisY, int direction) {
-        positions[numberOfShoots][2] = direction + 1;
+        //ne permet qu'1 tir par seconde
+        if(clock < processing.millis() - 500) {
+            positions[numberOfShoots][2] = direction + 1;
 
-        if (positions[numberOfShoots][2] == 1) {
-            positions[numberOfShoots][0] = ulisX + 13;
-            positions[numberOfShoots][1] = ulisY + 1;
-        }
-        if (positions[numberOfShoots][2] == 2) {
-            positions[numberOfShoots][0] = ulisX + 14;
-            positions[numberOfShoots][1] = ulisY + 13;
-        }
-        if (positions[numberOfShoots][2] == 3) {
-            positions[numberOfShoots][0] = ulisX + 2;
-            positions[numberOfShoots][1] = ulisY + 14;
-        }
-        if (positions[numberOfShoots][2] == 4) {
-            positions[numberOfShoots][0] = ulisX + 1;
-            positions[numberOfShoots][1] = ulisY + 2;
-        }
+            if (positions[numberOfShoots][2] == 1) {
+                positions[numberOfShoots][0] = ulisX + 13;
+                positions[numberOfShoots][1] = ulisY + 1;
+            }
+            if (positions[numberOfShoots][2] == 2) {
+                positions[numberOfShoots][0] = ulisX + 14;
+                positions[numberOfShoots][1] = ulisY + 13;
+            }
+            if (positions[numberOfShoots][2] == 3) {
+                positions[numberOfShoots][0] = ulisX + 2;
+                positions[numberOfShoots][1] = ulisY + 14;
+            }
+            if (positions[numberOfShoots][2] == 4) {
+                positions[numberOfShoots][0] = ulisX + 1;
+                positions[numberOfShoots][1] = ulisY + 2;
+            }
 
-        if (numberOfShoots >= maximum - 1) numberOfShoots = 0;
-        else numberOfShoots++;
+            if (numberOfShoots >= maximum - 1) numberOfShoots = 0;
+            else numberOfShoots++;
+
+            clock = processing.millis();
+        }
     }
 
     void update() {
