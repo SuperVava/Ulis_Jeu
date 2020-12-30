@@ -34,17 +34,17 @@ public class ShootList {
     void update() {
         for (int i = 0; i < maximum; i++) {
             lastPositions[i] = new int[]{positions[i][0], positions[i][1]};
-            if (positions[i][2] == 1) {
+            if (positions[i][2] == 0) {
                 positions[i][1] -= 1;
             }
-            if (positions[i][2] == 2) {
-                positions[i][0] -= 1;
+            if (positions[i][2] == 1) {
+                positions[i][0] += 1;
             }
-            if (positions[i][2] == 3) {
+            if (positions[i][2] == 2) {
                 positions[i][1] += 1;
             }
-            if (positions[i][2] == 4) {
-                positions[i][0] += 1;
+            if (positions[i][2] == 3) {
+                positions[i][0] -= 1;
             }
 
         }
