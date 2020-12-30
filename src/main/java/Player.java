@@ -42,10 +42,8 @@ public class Player {
     private void set(){
             screen.erase(texture, lastPositionX, lastPositionY);
         try {
-            processing.pushMatrix();
-            processing.rotate(PApplet.radians(90));
+
             screen.set(texture, positionX, positionY, ElementType.PLAYER);
-            processing.popMatrix();
         }
         catch (Colision colision){
             if(colision.getType() == ElementType.WALL) {
