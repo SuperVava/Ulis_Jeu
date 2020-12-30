@@ -24,9 +24,25 @@ public class ShootList {
     }
 
     void newShoot(int ulisX, int ulisY, int direction) {
-        positions[numberOfShoots][0] = ulisX + 13;
-        positions[numberOfShoots][1] = ulisY + 1;
-        positions[numberOfShoots][2] = direction;
+        positions[numberOfShoots][2] = direction + 1;
+
+        if (positions[numberOfShoots][2] == 1) {
+            positions[numberOfShoots][0] = ulisX + 13;
+            positions[numberOfShoots][1] = ulisY + 1;
+        }
+        if (positions[numberOfShoots][2] == 2) {
+            positions[numberOfShoots][0] = ulisX + 14;
+            positions[numberOfShoots][1] = ulisY + 13;
+        }
+        if (positions[numberOfShoots][2] == 3) {
+            positions[numberOfShoots][0] = ulisX + 2;
+            positions[numberOfShoots][1] = ulisY + 14;
+        }
+        if (positions[numberOfShoots][2] == 4) {
+            positions[numberOfShoots][0] = ulisX + 1;
+            positions[numberOfShoots][1] = ulisY + 2;
+        }
+
         if (numberOfShoots >= maximum - 1) numberOfShoots = 0;
         else numberOfShoots++;
     }
@@ -34,16 +50,16 @@ public class ShootList {
     void update() {
         for (int i = 0; i < maximum; i++) {
             lastPositions[i] = new int[]{positions[i][0], positions[i][1]};
-            if (positions[i][2] == 0) {
+            if (positions[i][2] == 1) {
                 positions[i][1] -= 1;
             }
-            if (positions[i][2] == 1) {
+            if (positions[i][2] == 2) {
                 positions[i][0] += 1;
             }
-            if (positions[i][2] == 2) {
+            if (positions[i][2] == 3) {
                 positions[i][1] += 1;
             }
-            if (positions[i][2] == 3) {
+            if (positions[i][2] == 4) {
                 positions[i][0] -= 1;
             }
 
@@ -53,7 +69,7 @@ public class ShootList {
 
     private void set() {
         for (int i = 0; i < positions.length; i++) {
-            if (positions[i][2] != 0) {
+            if (positions[i][2] > 0) {
                 screen.erase(texture, lastPositions[i][0], lastPositions[i][1]);
                 try {
                     screen.set(texture, positions[i][0], positions[i][1], ElementType.BULLET);
