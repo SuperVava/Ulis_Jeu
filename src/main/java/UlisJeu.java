@@ -34,7 +34,6 @@ public class UlisJeu extends PApplet {
 
     @Override
     public void draw() {
-
         if (!gameStarted) {
 
         }
@@ -47,6 +46,9 @@ public class UlisJeu extends PApplet {
                 time += 500;
             }
             shootList.update();
+
+            if (!keyPressed) control.stop();
+            control.update();
         }
 
     }

@@ -52,6 +52,7 @@ public class Player {
                 screen.erase(texture[sens], positionX, positionY);
                 positionX = lastPositionX;
                 positionY = lastPositionY;
+                sens = lastSens;
                 set();
             }else if (colision.getType() == ElementType.DOOR){
                 screen.erase(texture[sens], positionX, positionY);
